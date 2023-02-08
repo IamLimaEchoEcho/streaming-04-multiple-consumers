@@ -3,7 +3,7 @@
 Lee Jones 
 Module 04 - A4
 
-    This program sends a message to a queue on the RabbitMQ server.
+    This program uses an input file to send messages to a queue on the RabbitMQ server.
     Make tasks harder/longer-running by adding dots at the end of the message.
 
     Author: Denise Case
@@ -14,14 +14,18 @@ Module 04 - A4
 import pika
 import sys
 import webbrowser
+import csv
+
+show_offer = False
 
 def offer_rabbitmq_admin_site():
-    """Offer to open the RabbitMQ Admin website"""
-    ans = input("Would you like to monitor RabbitMQ queues? y or n ")
-    print()
-    if ans.lower() == "y":
-        webbrowser.open_new("http://localhost:15672/#/queues")
+    if show_offer:
+        """Offer to open the RabbitMQ Admin website"""
+        ans = input("Would you like to monitor RabbitMQ queues? y or n ")
         print()
+        if ans.lower() == "y":
+            webbrowser.open_new("http://localhost:15672/#/queues")
+            print()
 
 def send_message(host: str, queue_name: str, message: str):
     """
@@ -69,16 +73,15 @@ if __name__ == "__main__":
     # join by the space character inside the quotes
     message = " ".join(sys.argv[1:]) or "Second task....."
     
-    message1 = " ".join(sys.argv[1:]) or "First v2 task..."
-    message2 = " ".join(sys.argv[1:]) or "Second v2 task..."
-    message3 = " ".join(sys.argv[1:]) or "Third v2 task..."
 
-    for i in range (3):
-        if i == 0:
-            message = message1
-        elif i == 1:
-            message = message2
-        elif i == 2:
-            message = message3
+
+    myfile = "tasks.csv"
+    with open (myfile, mode ='r') as file:
+        csvFile = csv.reader(file)
+
+        for lines in csvFile:
+            message = ''.join(str(x) for x in lines)
+            
+    
     # send the message to the queue
-        send_message("localhost","task_queue2",message)
+            send_message("localhost","task_queue2",message)

@@ -1,27 +1,8 @@
-"""
-#
-Lee Jones 
-Module 04 - A4
-
-    This program sends a message to a queue on the RabbitMQ server.
-    Make tasks harder/longer-running by adding dots at the end of the message.
-
-    Author: Denise Case
-    Date: January 15, 2023
-
-"""
 
 import pika
 import sys
-import webbrowser
+import csv
 
-def offer_rabbitmq_admin_site():
-    """Offer to open the RabbitMQ Admin website"""
-    ans = input("Would you like to monitor RabbitMQ queues? y or n ")
-    print()
-    if ans.lower() == "y":
-        webbrowser.open_new("http://localhost:15672/#/queues")
-        print()
 
 def send_message(host: str, queue_name: str, message: str):
     """
@@ -56,29 +37,34 @@ def send_message(host: str, queue_name: str, message: str):
         # close the connection to the server
         conn.close()
 
+
+with open ('tasks.csv', mode ='r') as file:
+        csvFile = csv.reader(file)
+
+        for lines in csvFile:
+            message = lines
+            print(message)
+
 # Standard Python idiom to indicate main program entry point
 # This allows us to import this module and use its functions
 # without executing the code below.
 # If this is the program being run, then execute the code below
-if __name__ == "__main__":  
+#if __name__ == "__main__":  
     # ask the user if they'd like to open the RabbitMQ Admin site
-    offer_rabbitmq_admin_site()
+#    offer_rabbitmq_admin_site()
     # get the message from the command line
     # if no arguments are provided, use the default message
     # use the join method to convert the list of arguments into a string
     # join by the space character inside the quotes
-    message = " ".join(sys.argv[1:]) or "Second task....."
+#    message = " ".join(sys.argv[1:]) or "Second task....."
     
-    message1 = " ".join(sys.argv[1:]) or "First v2 task..."
-    message2 = " ".join(sys.argv[1:]) or "Second v2 task..."
-    message3 = " ".join(sys.argv[1:]) or "Third v2 task..."
+#    with open ('tasks.csv', mode ='r') as file:
+#        csvFile = csv.reader(file)
+#
+#        for lines in csvFile:
+#            message = lines
+    
 
-    for i in range (3):
-        if i == 0:
-            message = message1
-        elif i == 1:
-            message = message2
-        elif i == 2:
-            message = message3
+    
     # send the message to the queue
-        send_message("localhost","task_queue2",message)
+            send_message("localhost","task_queue2",message)

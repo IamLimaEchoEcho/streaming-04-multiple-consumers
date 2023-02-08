@@ -1,4 +1,7 @@
 """
+#
+Lee Jones 
+Module 04 - A4
 
 Creates and sends a task message to the queue each execution.
 This process runs and finishes. 
@@ -36,15 +39,25 @@ channel = connection.channel()
 # messages will not be deleted until the consumer acknowledges
 channel.queue_declare(queue="task_queue", durable=True)
 # create a message by joining the command line arguments
-message = " ".join(sys.argv[1:]) or "First task..."
+message1 = " ".join(sys.argv[1:]) or "First task..."
+message2 = " ".join(sys.argv[1:]) or "Second task..."
+message3 = " ".join(sys.argv[1:]) or "Third task..."
 # publish the message to the queue
-channel.basic_publish(
-    exchange="",
-    routing_key="task_queue",
-    body=message,
-    properties=pika.BasicProperties(delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE),
-)
+for i in range (3):
+    if i == 0:
+        message = message1
+    elif i == 1:
+        message = message2
+    elif i == 2:
+        message = message3
+
+    channel.basic_publish(
+        exchange="",
+        routing_key="task_queue",
+        body=message,
+        properties=pika.BasicProperties(delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE),
+    )
 # tell the user the message was sent
-print(f" [x] Sent {message}")
+    print(f" [x] Sent {message}")
 # close the connection to the server
 connection.close()
