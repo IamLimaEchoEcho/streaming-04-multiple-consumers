@@ -1,7 +1,7 @@
 """
 #
-Lee Jones 
-Module 04 - A4
+Lee Jones  
+Module 04 - A4 
 
     This program sends a message to a queue on the RabbitMQ server.
     Make tasks harder/longer-running by adding dots at the end of the message.
