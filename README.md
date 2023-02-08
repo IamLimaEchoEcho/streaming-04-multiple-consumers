@@ -68,4 +68,4 @@ See a running example with at least 3 concurrent process windows here:
 # Screenshot1: 
 [![Screenshot 1](https://github.com/IamLimaEchoEcho/streaming-04-multiple-consumers/blob/main/Screenshot1.png "Lee Jones")
 # Screenshot2: 
-[![Screenshot 2](https://github.com/IamLimaEchoEcho/streaming-04-multiple-consumers/blob/main/Screenshot2.png"Lee Jones")
+[![Screenshot 2](https://github.com/IamLimaEchoEcho/streaming-04-multiple-consumers/blob/main/Screenshot2.png "Lee Jones")
