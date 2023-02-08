@@ -17,6 +17,7 @@ import webbrowser
 import csv
 
 show_offer = False
+queue_name = "task_queue2-LJ"
 
 def offer_rabbitmq_admin_site():
     if show_offer:
@@ -84,4 +85,4 @@ if __name__ == "__main__":
             
     
     # send the message to the queue
-            send_message("localhost","task_queue2",message)
+            send_message("localhost",queue_name,message)
