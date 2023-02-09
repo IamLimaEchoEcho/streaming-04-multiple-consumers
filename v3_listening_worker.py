@@ -1,6 +1,6 @@
 """
 #
-Lee Jones 
+Lee Jones
 Module 04 - A4
 
     This program listens for work messages contiously. 

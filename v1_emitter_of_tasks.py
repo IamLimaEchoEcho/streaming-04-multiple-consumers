@@ -1,7 +1,7 @@
 """
 #
 Lee Jones 
-Module 04 - A4 
+Module 04 - A4
 
 Creates and sends a task message to the queue each execution.
 This process runs and finishes. 
