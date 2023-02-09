@@ -1,7 +1,7 @@
 """
 #
 Lee Jones 
-Module 04 - A4 
+Module 04 - A4  
 
     This program uses an input file to send messages to a queue on the RabbitMQ server.
     Make tasks harder/longer-running by adding dots at the end of the message.
